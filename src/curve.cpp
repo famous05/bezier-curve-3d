@@ -2,7 +2,7 @@
 /*------------------------------------------------------------------------------
 BezierLite Library
 
-Copyright (c) 2018, Osarobo Famous Okhuahesogie, famous.osarobo@gmail.com
+Copyright (c) 2020, Osarobo Famous Okhuahesogie, famous.osarobo@gmail.com
 
 License
     This file is part of BezierLite library. 
