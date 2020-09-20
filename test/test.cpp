@@ -1,7 +1,7 @@
 /*------------------------------------------------------------------------------
 BezierLite Library
 
-Copyright (c) 2018, Osarobo Famous Okhuahesogie, famous.osarobo@gmail.com
+Copyright (c) 2020, Osarobo Famous Okhuahesogie, famous.osarobo@gmail.com
 
 License
     This file is part of BezierLite library. 
@@ -66,10 +66,9 @@ int main()
 	// *************************************************************************
 	// Construct a Bezier curve using the four control points.
 	// The Bezier curve should contain 10 points
-	auto bezier_curve =
-    std::make_unique<BezierCurve>(ctrl_points, 10);
+	auto bezier_curve = std::make_unique<BezierCurve>(ctrl_points, 10);
 	bezier_curve->constructCurve();
-	std:: cout << "Printing Bezier Curve " << std::endl;
+	std:: cout << "Printing Bezier Curve: " << std::endl;
 	bezier_curve->printCurve();
 	//**************************************************************************
 
@@ -78,8 +77,7 @@ int main()
 	// Construct a linear interpolator curve using the four control points
 	// The Linear Interpolator curve should contain 10 points + original 
 	// internal points (excluding first and last)
-	auto linter_curve =
-    std::make_unique<LinearInterpolator>(ctrl_points,10);
+	auto linter_curve = std::make_unique<LinearInterpolator>(ctrl_points,10);
 	linter_curve->constructCurve();
 	std:: cout << "Printing Linear Interpolator Curve " << std::endl;
 	linter_curve->printCurve();
@@ -90,8 +88,7 @@ int main()
 	// *************************************************************************
 	// Construct a new Bezier curve using the linear interpolator curve points
 	// as control points. The new Bezier curve should contain 10 points
-	std::unique_ptr<BezierCurve> 
-	bezier_curve_2(new BezierCurve(linter_curve->getCurve(), 10));
+	std::unique_ptr<BezierCurve> bezier_curve_2(new BezierCurve(linter_curve->getCurve(), 10));
 	bezier_curve_2->constructCurve();
 	std:: cout << "Printing New Bezier Curve " << std::endl;
 	bezier_curve_2->printCurve();
