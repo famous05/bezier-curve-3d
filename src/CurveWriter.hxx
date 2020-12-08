@@ -19,47 +19,45 @@ License
     along with BezierLite.  If not, see <http://www.gnu.org/licenses/>.
 
 
+Class
+    BezierLite::CurveWriter
+
+Description
+    Defines a class for writing curve points in various formats
+
+SourceFiles
+    CurveWriter.cpp
+
 This file is part of BezierLite library
 ------------------------------------------------------------------------------*/
 
-// C++
-#include <iostream>
-#include <memory>
+// C++ Headers
 #include <vector>
+#include <iostream>
+#include <fstream>
+#include <iomanip>
 
-// Developer
-#include "../src/Point.hxx"
-#include "../src/CurveWriter.hxx"
+// Developer Headers
+#include "Point.hxx"
 
-using Point = BezierLite::Point;
-using CurveWriter = BezierLite::CurveWriter;
-
-int main()
+namespace BezierLite
 {
 
+    #ifndef CURVEWRITER
+    #define CURVEWRITER
 
-	Point p1(0,-10,0);
-	p1.Print();
+    class CurveWriter
+    {
+        public:
 
-	auto p2 = std::make_unique<Point>(0.5, 1, 2);
-	p2->Print();
-
-
-	auto p3 = p1 + *p2;
-	p3.Print();
-
-	p1 = p1 * 2;
-    p1.Print();
+            static void WriteToTSV(std::vector<BezierLite::Point> curve,
+                            		const std::string fileName, int colWidth = 10);
 
 
-    std::vector<Point> line;
+            static void WriteToCSV(std::vector<BezierLite::Point> curve,
+                            		std::string fileName, int colWidth = 10);
 
-	for (int i = 0; i < 10; i++)
-	{
-	    auto p = std::make_unique<Point>(i, i * i * 0.15, -i * 0.5);
-        line.push_back(*p);
-	}
+    };
+    #endif
 
-    CurveWriter::WriteToTSV(line, "curve.dat");
-
-}
+} // End of namespace BezierLite

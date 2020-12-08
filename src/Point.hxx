@@ -83,10 +83,10 @@ class Point
         double GetZ() const;
 
         /// Returns the distance between Points p1 and p2
-        static double GetDistBtwPoints(const Point& p1, const Point& p2);
+        static double GetDistanceBetweenPoints(const Point& p1, const Point& p2);
 
         /// Returns the distance between calling point object and Point p
-        double GetDistToPoint(const Point& p) const;
+        double GetDistanceToPoint(const Point& p) const;
 
 
         /// Adds the (x,y,z) components of Points p and calling point object
@@ -106,7 +106,7 @@ class Point
 
         /// Multiplies the (x,y,z) components of Point p by value  and returns
         ///   a reference to Point object
-        Point& operator*(double val) const;
+        Point& operator*(const double& val) const;
 
 
 
@@ -125,7 +125,7 @@ class Point
 
         /// Multiplies the (x,y,z) components of p1 by val and returns a const
         /// reference to Point object
-        static const Point& MultiplyPointByValue(const Point& p1, double val);
+        static const Point& MultiplyPointByValue(const Point& p1, const double& val);
 
 
         /// Scales the (x,y,z) components of calling point by factor

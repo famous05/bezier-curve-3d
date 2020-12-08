@@ -35,6 +35,7 @@ INCLUDES = ../src/*.hxx
 #define the source files
 #SOURCES = ../src/*.cpp
 SOURCES = ../src/Point.cpp
+SOURCES += ../src/CurveWriter.cpp
 SOURCES += test2.cpp
 
 #define object file names from source file names

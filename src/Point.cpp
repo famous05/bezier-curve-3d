@@ -80,7 +80,7 @@ Point::~Point()
 
 }
 
-void Point::print()
+void Point::Print()
 {
     std::cout << std::left << std::setw(10) << this->x;
     std::cout << std::left << std::setw(10) << this->y;
@@ -129,16 +129,16 @@ double Point::GetZ() const
     return this->z;
 }
 
-double Point::GetDistBtwPoints(const Point &p1, const Point &p2)
+double Point::GetDistanceBetweenPoints(const Point &p1, const Point &p2)
 {
     return std::sqrt(std::pow(p2.GetX() - p1.GetX(), 2) +
     std::pow(p2.GetY() - p1.GetY(), 2) +
     std::pow(p2.GetZ() - p1.GetZ(), 2));
 }
 
-double Point::GetDistToPoint(const Point &p) const
+double Point::GetDistanceToPoint(const Point &p) const
 {
-    return BezierLite::Point::GetDistBtwPoints(*this, p);
+    return BezierLite::Point::GetDistanceBetweenPoints(*this, p);
 }
 // End of getters ***
 
