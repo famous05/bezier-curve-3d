@@ -30,9 +30,11 @@ This file is part of BezierLite library
 // Developer
 #include "../src/Point.hxx"
 #include "../src/CurveWriter.hxx"
+#include "../src/Curve.hxx"
 
 using Point = BezierLite::Point;
 using CurveWriter = BezierLite::CurveWriter;
+using Curve = BezierLite::Curve;
 
 int main()
 {
@@ -61,5 +63,15 @@ int main()
 	}
 
     CurveWriter::WriteToTSV(line, "curve.dat");
+
+    Curve crv;
+
+	for (auto p : line) crv.AppendPointToCurve(p);
+
+    crv.ScaleCurve(1000);
+
+	crv.WriteCurveToCSV("curve_csv.csv");
+
+    crv.PrintCurve();
 
 }
