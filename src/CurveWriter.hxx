@@ -46,16 +46,24 @@ namespace BezierLite
     #ifndef CURVEWRITER
     #define CURVEWRITER
 
-    class CurveWriter
+    class CurveWriter final
     {
         public:
 
-            static void WriteToTSV(std::vector<BezierLite::Point> curve,
-                            		const std::string fileName, int colWidth = 10);
+            static void WriteToTSV
+            (
+                std::vector<BezierLite::Point> curve,
+                const std::string fileName, 
+                int colWidth = 10
+            );
 
 
-            static void WriteToCSV(std::vector<BezierLite::Point> curve,
-                            		std::string fileName, int colWidth = 10);
+            static void WriteToCSV
+            (
+                std::vector<BezierLite::Point> curve,
+                std::string fileName, 
+                int colWidth = 10
+            );
 
     };
     #endif
