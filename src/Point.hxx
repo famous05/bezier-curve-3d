@@ -2,7 +2,7 @@
 /*------------------------------------------------------------------------------
 BezierLite Library
 
-Copyright (c) 2017 - 2020, Osarobo Famous Okhuahesogie, famous.osarobo@gmail.com
+Copyright (c) 2017 - 2021, Osarobo Famous Okhuahesogie, famous.osarobo@gmail.com
 
 License
     This file is part of BezierLite library.
@@ -37,6 +37,7 @@ This file is part of BezierLite library
 #include <iostream>
 #include <cmath>
 #include <iomanip>
+#include <memory>
 
 
 namespace BezierLite
@@ -54,7 +55,7 @@ class Point
 
 
         /// Parameterized constructor
-        Point(const double& x, const double& y, const double& z);
+        Point(double x, double y, double z);
 
 
         /// Copy constructor
@@ -72,10 +73,10 @@ class Point
         virtual void Print();
 
 
-        void SetX(const double& x);
-        void SetY(const double& y);
-        void SetZ(const double& z);
-        void SetXYZ(const double& x, const double& y, const double& z);
+        void SetX(double x);
+        void SetY(double y);
+        void SetZ(double z);
+        void SetXYZ(double x, double y, double z);
 
 
         double GetX() const;
@@ -106,7 +107,7 @@ class Point
 
         /// Multiplies the (x,y,z) components of Point p by value  and returns
         ///   a reference to Point object
-        Point& operator*(const double& val) const;
+        Point& operator*(double val) const;
 
 
 
@@ -125,11 +126,11 @@ class Point
 
         /// Multiplies the (x,y,z) components of p1 by val and returns a const
         /// reference to Point object
-        static const Point& MultiplyPointByValue(const Point& p1, const double& val);
+        static const Point& MultiplyPointByValue(const Point& p1, double val);
 
 
         /// Scales the (x,y,z) components of calling point by factor
-        void ScalePoint(const double& factor);
+        void ScalePoint(double factor);
 
 
     private:

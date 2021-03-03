@@ -85,7 +85,7 @@ class Curve
         }
 
 
-        template <typename T> static void ScaleCurve (std::vector<T>& vp, const double scaleFactor)
+        template <typename T> static void ScaleCurve (std::vector<T>& vp, double scaleFactor)
         {
             for (auto &p : vp) p.ScalePoint(scaleFactor);
         }
