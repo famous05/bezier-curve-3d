@@ -1,3 +1,4 @@
-test/bz_test
-test/bezier.dat
-test/w_bezier.dat
+test/bzt
+test/curve.dat
+test/curve_csv.csv
+test/curve_csv.dat

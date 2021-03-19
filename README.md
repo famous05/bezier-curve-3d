@@ -1,4 +1,4 @@
-### BezierLite -> Work In Progress
+### BezierLite
 BezierLite is a simple Bezier library for constructing weighted control points Bezier curves. 
 It also include a linear interpolator class and utilities for writing curve points to file. 
 
@@ -23,4 +23,4 @@ This code is available under the GNU General Public License v3. You should have 
 	make
 
 5. Run the created executable
-	./bz_test
+	./bzt

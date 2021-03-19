@@ -20,15 +20,6 @@ License
     along with BezierLite.  If not, see <http://www.gnu.org/licenses/>.
 
 
-Class
-    BezierLite::Curve
-
-Description
-    A curve consists of at least two points
-
-SourceFiles
-    curve.cpp
-
 This file is part of BezierLite library
 ------------------------------------------------------------------------------*/
 

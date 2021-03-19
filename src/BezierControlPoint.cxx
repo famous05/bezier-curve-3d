@@ -2,7 +2,7 @@
 /*------------------------------------------------------------------------------
 BezierLite Library
 
-Copyright (c) 2020, Osarobo Famous Okhuahesogie, famous.osarobo@gmail.com
+Copyright (c) 2018 - 2021, Osarobo Famous Okhuahesogie, famous.osarobo@gmail.com
 
 License
     This file is part of BezierLite library.
@@ -18,16 +18,6 @@ License
 
     You should have received a copy of the GNU General Public License
     along with BezierLite.  If not, see <http://www.gnu.org/licenses/>.
-
-
-Class
-    BezierLite::BezierControlPoint
-
-Description
-    (X, Y, Z, Weight) 3D Control Point for Bezier Curves and Bezier Surfaces
-
-SourceFiles
-    bezier_control_point.cpp
 
 This file is part of BezierLite library
 ------------------------------------------------------------------------------*/

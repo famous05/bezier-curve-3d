@@ -20,14 +20,6 @@ License
     along with BezierLite.  If not, see <http://www.gnu.org/licenses/>.
 
 
-Class
-    BezierLite::Curve
-
-Description
-    A curve consists of at least two points
-
-SourceFiles
-    Curve.cpp
 
 This file is part of BezierLite library
 ------------------------------------------------------------------------------*/
@@ -53,19 +45,19 @@ class Curve
 {
     public:
 
-        /* Default constructor */
+        /// Default constructor
         Curve();
 
 
-        /* Copy constructor  */
+        /// Copy constructor
         Curve(const Curve& curve);
 
 
-        /* Assignment operator */
+        /// Assignment operator
         Curve& operator = (const Curve& curve);
 
 
-        /* Default destructor */
+        /// Default destructor
         virtual ~Curve();
 
 
@@ -78,7 +70,6 @@ class Curve
         int GetNumberOfCurvePoints();
 
 
-        // static member functions do not require an object for use
         template <typename T> static void PrintCurve(const std::vector<T>& vp)
         {
             for(auto p : vp) p.Print();
@@ -97,7 +88,15 @@ class Curve
 
         void ScaleCurve(double factor);
 
+        /// Writes a curve to comma seperated file format
+        /// @param <Input> Outpuf file name
+        /// @param <Input/Optional> Column width. Default = 10
         void WriteCurveToCSV(std::string fileName, int colWidth = 10);
+
+
+        /// Writes a curve to tab seperated file format
+        /// @param <Input> Outpuf file name
+        /// @param <Input/Optional> Column width. Default = 10
         void WriteCurveToTSV(std::string fileName, int colWidth = 10);
 
 

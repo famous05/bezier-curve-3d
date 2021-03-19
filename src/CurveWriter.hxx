@@ -19,15 +19,6 @@ License
     along with BezierLite.  If not, see <http://www.gnu.org/licenses/>.
 
 
-Class
-    BezierLite::CurveWriter
-
-Description
-    Defines a class for writing curve points in various formats
-
-SourceFiles
-    CurveWriter.cpp
-
 This file is part of BezierLite library
 ------------------------------------------------------------------------------*/
 
@@ -50,18 +41,25 @@ namespace BezierLite
     {
         public:
 
+            /// Writes a curve to tab seperated file format
+            /// @param <Input> Curve object (vector of Points)
+            /// @param <Input> Outpuf file name
+            /// @param <Input/Optional> Column width. Default = 10
             static void WriteToTSV
             (
                 std::vector<BezierLite::Point> curve,
-                const std::string fileName, 
+                const std::string fileName,
                 int colWidth = 10
             );
 
-
+            /// Writes a curve to comma seperated file format
+            /// @param <Input> Curve object (vector of Points)
+            /// @param <Input> Outpuf file name
+            /// @param <Input/Optional> Column width. Default = 10
             static void WriteToCSV
             (
                 std::vector<BezierLite::Point> curve,
-                std::string fileName, 
+                std::string fileName,
                 int colWidth = 10
             );
 

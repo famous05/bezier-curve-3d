@@ -19,19 +19,8 @@ License
     along with BezierLite.  If not, see <http://www.gnu.org/licenses/>.
 
 
-Class
-    BezierLite::BezierCurve
-
-Description
-    Bezier curve class for constructing Bezier curves
-
-SourceFiles
-    BezierCurve.cxx
-
 This file is part of BezierLite library
 ------------------------------------------------------------------------------*/
-
-
 
 
 // Developer Headers
@@ -50,8 +39,9 @@ class BezierCurve : public BezierLite::Curve
 {
     public:
 
-
+        /// Default constructor
         BezierCurve();
+
 
         BezierCurve(const std::vector<BezierLite::BezierControlPoint>& cpts, int nCurvePoints);
 
@@ -95,9 +85,6 @@ class BezierCurve : public BezierLite::Curve
         double GetBinomialCoefficient(int n, int i) const;
 
         double GetBernsteinPolynomial(int i, int n, double t) const;
-
-
-    private:
 
         std::vector<BezierLite::BezierControlPoint> m_BezierControlPoints;
 

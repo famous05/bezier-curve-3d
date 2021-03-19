@@ -19,22 +19,11 @@ License
     along with BezierLite.  If not, see <http://www.gnu.org/licenses/>.
 
 
-Class
-    BezierLite::BezierControlPoint
-
-Description
-    (X, Y, Z, Weight) 3D Control Point for Bezier Curves and Bezier Surfaces
-
-SourceFiles
-    bezier_control_point.cpp
-
 This file is part of BezierLite library
 ------------------------------------------------------------------------------*/
 
-
 // Developer Headers
 #include "Point.hxx"
-
 
 namespace BezierLite
 {
@@ -46,32 +35,22 @@ class BezierControlPoint : public BezierLite::Point
 {
     public:
 
-    	/* Default constructor */
     	BezierControlPoint();
 
-        /* Initialize control point using x,y,z coordinates and weight */
         BezierControlPoint(double x, double y, double z, double weight = 1);
 
-        /* Copy constructor */
         BezierControlPoint(const BezierControlPoint& cpoint);
 
-
-        /* Assignment operator */
         BezierControlPoint& operator = (const BezierControlPoint& point);
 
-
-        /* Default destructor */
         virtual ~BezierControlPoint();
 
-
-        /* Prints the x,y,z coordiates and weight of control point */
         void Print();
-
 
         double GetWeight() const;
 
-
         void SetWeight(double w);
+
         void SetXYZW(double x, double y, double z, double w);
 
     private:

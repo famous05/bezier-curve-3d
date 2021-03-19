@@ -1,7 +1,7 @@
 /*------------------------------------------------------------------------------
 BezierLite Library
 
-Copyright (c) 2017 - 2020, Osarobo Famous Okhuahesogie, famous.osarobo@gmail.com
+Copyright (c) 2017 - 2021, Osarobo Famous Okhuahesogie, famous.osarobo@gmail.com
 
 License
     This file is part of BezierLite library.
@@ -18,15 +18,6 @@ License
     You should have received a copy of the GNU General Public License
     along with BezierLite.  If not, see <http://www.gnu.org/licenses/>.
 
-
-Class
-    BezierLite::CurveWriter
-
-Description
-    Defines a class for writing curve points in various formats
-
-SourceFiles
-    CurveWriter.cpp
 
 This file is part of BezierLite library
 ------------------------------------------------------------------------------*/

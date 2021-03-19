@@ -66,7 +66,6 @@ class Point
         Point& operator = (const Point& point);
 
 
-        /// Default destructor
         virtual ~Point();
 
 
@@ -110,19 +109,20 @@ class Point
         Point& operator*(double val) const;
 
 
-
         /// Adds the (x,y,z) components of Points p1 and p2 and returns a
         /// const reference to Point object
         static const Point& AddPoints(const Point& p1, const Point& p2);
 
 
-        /// Subtracts the (x,y,z) components of p2 from the (x,y,z) components //// of p1 and returns a const reference to Point object
+        /// Subtracts the (x,y,z) components of p2 from the (x,y,z) components
+        /// of p1 and returns a const reference to Point object
         static const Point& SubtractPoints(const Point& p1, const Point& p2);
 
 
         /// Multiplies the (x,y,z) components of p1 and p2 and returns a const
         /// reference to Point object
         static const Point& MultiplyPoints(const Point& p1, const Point& p2);
+
 
         /// Multiplies the (x,y,z) components of p1 by val and returns a const
         /// reference to Point object
@@ -134,9 +134,9 @@ class Point
 
 
     private:
-        double x;
-        double y;
-        double z;
+        double x {0};
+        double y {0};
+        double z {0};
 };
 #endif
 

@@ -2,7 +2,7 @@
 /*------------------------------------------------------------------------------
 BezierLite Library
 
-Copyright (c) 2018, Osarobo Famous Okhuahesogie, famous.osarobo@gmail.com
+Copyright (c) 2018 - 2021, Osarobo Famous Okhuahesogie, famous.osarobo@gmail.com
 
 License
     This file is part of BezierLite library.
@@ -20,15 +20,6 @@ License
     along with BezierLite.  If not, see <http://www.gnu.org/licenses/>.
 
 
-Class
-    BezierLite::Point
-
-Description
-    (X, Y, Z) 3D Point
-
-SourceFiles
-    point.cpp
-
 This file is part of BezierLite library
 ------------------------------------------------------------------------------*/
 
@@ -36,17 +27,12 @@ This file is part of BezierLite library
 // Class header
 #include "Point.hxx"
 
-
 namespace BezierLite
 {
 
-
-
 Point::Point()
 {
-    this->x = 0;
-    this->y = 0;
-    this->z = 0;
+
 }
 
 Point::Point(double x, double y, double z)
@@ -58,18 +44,18 @@ Point::Point(double x, double y, double z)
 
 Point::Point(const Point& p)
 {
-    this->x = p.GetX();
-    this->y = p.GetY();
-    this->z = p.GetZ();
+    this->x = p.x;
+    this->y = p.y;
+    this->z = p.z;
 }
 
-Point& Point::operator =(const Point& point)
+Point& Point::operator =(const Point& p)
 {
-	if (&point != this)
+	if (&p != this)
 	{
-		this->x = point.GetX();
-		this->y = point.GetY();
-		this->z = point.GetZ();
+    this->x = p.x;
+    this->y = p.y;
+    this->z = p.z;
 	}
 
 	return *this;
@@ -131,9 +117,9 @@ double Point::GetZ() const
 
 double Point::GetDistanceBetweenPoints(const Point &p1, const Point &p2)
 {
-    return std::sqrt(std::pow(p2.GetX() - p1.GetX(), 2) +
-    std::pow(p2.GetY() - p1.GetY(), 2) +
-    std::pow(p2.GetZ() - p1.GetZ(), 2));
+    return std::sqrt(std::pow(p2.x - p1.x, 2) +
+    std::pow(p2.y - p1.y, 2) +
+    std::pow(p2.z - p1.z, 2));
 }
 
 double Point::GetDistanceToPoint(const Point &p) const
@@ -142,128 +128,100 @@ double Point::GetDistanceToPoint(const Point &p) const
 }
 // End of getters ***
 
-
 Point& Point::operator+(const Point& p) const
 {
-    auto point = std::make_unique<BezierLite::Point>(0, 0, 0);
-    point->SetX(this->x + p.GetX());
-    point->SetY(this->y + p.GetY());
-    point->SetZ(this->z + p.GetZ());
-    return *point;
+    auto point = std::make_shared<BezierLite::Point>(0, 0, 0);
 
-    // Clear memory
-    //delete point;
-    //point = nullptr;
+    point->SetX(this->x + p.x);
+    point->SetY(this->y + p.y);
+    point->SetZ(this->z + p.z);
+
+    return *point;
 }
 
 Point& Point::operator-(const Point& p) const
 {
-    auto point = std::make_unique<BezierLite::Point>(0, 0, 0);
-    //BezierLite::Point* point = new BezierLite::Point(0,0,0);
-    point->SetX(this->x - p.GetX());
-    point->SetY(this->y - p.GetY());
-    point->SetZ(this->z - p.GetZ());
-    return *point;
+    auto point = std::make_shared<BezierLite::Point>(0, 0, 0);
 
-    // Clear memory
-    //delete point;
-    //point = nullptr;
+    point->SetX(this->x - p.x);
+    point->SetY(this->y - p.y);
+    point->SetZ(this->z - p.z);
+
+    return *point;
 }
 
 
 Point& Point::operator*(const Point& p) const
 {
-    auto point = std::make_unique<BezierLite::Point>(0, 0, 0);
-    //BezierLite::Point* point = new BezierLite::Point(0,0,0);
-    point->SetX(this->x * p.GetX());
-    point->SetY(this->y * p.GetY());
-    point->SetZ(this->z * p.GetZ());
-    return *point;
+    auto point = std::make_shared<BezierLite::Point>(0, 0, 0);
 
-    // Clear memory
-    //delete point;
-    //point = nullptr;
+    point->SetX(this->x * p.x);
+    point->SetY(this->y * p.y);
+    point->SetZ(this->z * p.z);
+
+    return *point;
 }
 
 Point& Point::operator*(double val) const
 {
-    auto point = std::make_unique<BezierLite::Point>(0, 0, 0);
-    //BezierLite::Point* point = new BezierLite::Point(0,0,0);
+    auto point = std::make_shared<BezierLite::Point>(0, 0, 0);
+
     point->SetX(this->x * val);
     point->SetY(this->y * val);
     point->SetZ(this->z * val);
-    return *point;
 
-    // Clear memory
-    //delete point;
-    //point = nullptr;
+    return *point;
 }
 
 const Point& Point::AddPoints(const Point& p1, const Point& p2)
 {
-    auto p = std::make_unique<BezierLite::Point>(0, 0, 0);
+    auto p = std::make_shared<BezierLite::Point>(0, 0, 0);
 
-    //BezierLite::Point* p = new BezierLite::Point(0,0,0);
-    p->SetX(p1.GetX() + p2.GetX());
-    p->SetY(p1.GetY() + p2.GetY());
-    p->SetZ(p1.GetZ() + p2.GetZ());
+    p->SetX(p1.x + p2.x);
+    p->SetY(p1.y + p2.y);
+    p->SetZ(p1.z + p2.z);
+
     return *p;
-
-    // Clear memory
-    //delete p;
-    //p = nullptr;
 }
 
 const Point& Point::SubtractPoints(const Point& p1, const Point& p2)
 {
-    auto p = std::make_unique<BezierLite::Point>(0, 0, 0);
+    auto p = std::make_shared<BezierLite::Point>(0, 0, 0);
 
-    //BezierLite::Point* p = new BezierLite::Point(0,0,0);
-    p->SetX(p1.GetX() - p2.GetX());
-    p->SetY(p1.GetY() - p2.GetY());
-    p->SetZ(p1.GetZ() - p2.GetZ());
+    p->SetX(p1.x - p2.x);
+    p->SetY(p1.y - p2.y);
+    p->SetZ(p1.z - p2.z);
+
     return *p;
-
-    // Clear memory
-    //delete p;
-    //p = nullptr;
 }
 
 const Point& Point::MultiplyPoints(const Point& p1, const Point& p2)
 {
-    auto p = std::make_unique<BezierLite::Point>(0, 0, 0);
+    auto p = std::make_shared<BezierLite::Point>(0, 0, 0);
 
-    //BezierLite::Point* p = new BezierLite::Point(0,0,0);
-    p->SetX(p1.GetX() * p2.GetX());
-    p->SetY(p1.GetY() * p2.GetY());
-    p->SetZ(p1.GetZ() * p2.GetZ());
+    p->SetX(p1.x * p2.x);
+    p->SetY(p1.y * p2.y);
+    p->SetZ(p1.z * p2.z);
+
     return *p;
-
-    // Clear memory
-    //delete p;
-    //p = nullptr;
 }
 
 const Point& Point::MultiplyPointByValue(const Point& p1, double val)
 {
-    auto p = std::make_unique<BezierLite::Point>(0, 0, 0);
+    auto p = std::make_shared<BezierLite::Point>(0, 0, 0);
 
-    //BezierLite::Point* p = new BezierLite::Point(0,0,0);
-    p->SetX(p1.GetX() * val);
-    p->SetY(p1.GetY() * val);
-    p->SetZ(p1.GetZ() * val);
+    p->SetX(p1.x * val);
+    p->SetY(p1.y * val);
+    p->SetZ(p1.z * val);
+
     return *p;
-
-    // Clear memory
-    //delete p;
-    //p = nullptr;
 }
 
 void Point::ScalePoint(double factor)
 {
-    this->SetX(this->GetX() * factor);
-    this->SetY(this->GetY() * factor);
-    this->SetZ(this->GetZ() * factor);
+    this->SetX(this->x * factor);
+    this->SetY(this->y * factor);
+    this->SetZ(this->z * factor);
 }
 
 } // End of namespace BezierLite

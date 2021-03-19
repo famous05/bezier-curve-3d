@@ -20,15 +20,6 @@ License
     along with BezierLite.  If not, see <http://www.gnu.org/licenses/>.
 
 
-Class
-    BezierLite::BezierCurve
-
-Description
-    Bezier curve class for constructing Bezier curves
-
-SourceFiles
-    BezierCurve.cxx
-
 This file is part of BezierLite library
 ------------------------------------------------------------------------------*/
 
@@ -266,18 +257,16 @@ int BezierCurve::GetFactorial(int n) const
 
 double BezierCurve::GetBinomialCoefficient(int n, int i) const
 {
-    /*
-        returns n!/(i! * (n-i)!)  i.e. nCi
-    */
+    /// Returns n!/(i! * (n-i)!)  i.e. nCi
+
     return this->GetFactorial(n)/((this->GetFactorial(i)) *
                                                 (this->GetFactorial(n - i)));
 }
 
 double BezierCurve::getBernsteinPolynomial(int i, int n, double t) const
 {
-    /*
-        retuns nCi * t^i * (1-t)^(n-i)
-    */
+    /// Retuns nCi * t^i * (1-t)^(n-i)
+
     return this->GetBinomialCoefficient(n, i) * std::pow(t, i) * std::pow(1 - t, n - i);
 }
 
