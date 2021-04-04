@@ -72,7 +72,7 @@ BezierCurve::BezierCurve(const BezierCurve& bezierCurve)
 
 	for (auto p : bezierCurve.GetCurve()) this->AppendPointToCurve(p);
 
-	this->nCurvePoints = bezierCurve.nCurvePoints;
+	this->m_nCurvePoints = bezierCurve.m_nCurvePoints;
 }
 
 
@@ -82,11 +82,11 @@ BezierCurve& BezierCurve::operator =(const BezierCurve& bezierCurve)
 	{
 		this->m_BezierControlPoints = bezierCurve.m_BezierControlPoints;
 
-		this->clearCurve();
+		this->ClearCurve();
 
 		for (auto p : bezierCurve.GetCurve()) this->AppendPointToCurve(p);
 
-		this->nCurvePoints = bezierCurve.nCurvePoints;
+		this->m_nCurvePoints = bezierCurve.m_nCurvePoints;
 	}
 
 	return *this;
@@ -125,7 +125,7 @@ std::vector<BezierLite::Point> BezierCurve::GetBezierCurve
 std::vector<BezierLite::Point> BezierCurve::GetBezierCurve
 (
 	const std::vector<BezierLite::Point>& cpts,
-	int num_points
+	int nPoints
 )
 {
     auto bCurve = std::make_unique<BezierLite::BezierCurve>(cpts, nPoints);
@@ -165,7 +165,7 @@ void BezierCurve::SetNumberOfCurvePoints(int nCurvePoints)
 }
 
 
-void BezierCurve::ScaleControlPoints(const double& factor)
+void BezierCurve::ScaleControlPoints(double factor)
 {
     BezierLite::Curve::ScaleCurve(this->m_BezierControlPoints, factor);
 }
@@ -186,7 +186,7 @@ void BezierCurve::ConstructCurve()
 
     for (const auto& ctrlPoint : this->m_BezierControlPoints)
     {
-    	if (ctrlPoint.getWeight() != 1)
+    	if (ctrlPoint.GetWeight() != 1)
     	{
     		isWeighted = true;
     	}
@@ -220,7 +220,7 @@ void BezierCurve::ConstructCurve()
         	for (const auto& ctrlPoint : this->m_BezierControlPoints)
 	        {
 	        	// denominator for each ctrl pt (weight * bernstein polynomial)
-	        	weightTPoly = ctrlPoint.getWeight() * this->getBernsteinPolynomial(i,n,t);
+	        	weightTPoly = ctrlPoint.GetWeight() * this->GetBernsteinPolynomial(i,n,t);
 
 	        	*point = ctrlPoint * weightTPoly;
 
@@ -263,7 +263,7 @@ double BezierCurve::GetBinomialCoefficient(int n, int i) const
                                                 (this->GetFactorial(n - i)));
 }
 
-double BezierCurve::getBernsteinPolynomial(int i, int n, double t) const
+double BezierCurve::GetBernsteinPolynomial(int i, int n, double t) const
 {
     /// Retuns nCi * t^i * (1-t)^(n-i)
 

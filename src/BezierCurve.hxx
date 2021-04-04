@@ -43,38 +43,83 @@ class BezierCurve : public BezierLite::Curve
         BezierCurve();
 
 
+        /// Parameterized constructor
+        /// @param cpts Vector of BezierControlPoint points
+        /// @param nCurvePoints Number of points for curve to be created
         BezierCurve(const std::vector<BezierLite::BezierControlPoint>& cpts, int nCurvePoints);
 
+
+        /// Parameterized constructor
+        /// @param cpts Vector of Point points
+        /// @param nCurvePoints Number of points for curve to be created
         BezierCurve(const std::vector<BezierLite::Point>& cpts, int nCurvePoints);
 
+
+        /// Copy constructor
+        /// @param bezierCurve BezierCurve object to be copied
         BezierCurve(const BezierCurve& bezierCurve);
 
+
+        /// Assignment operator
+        /// @param bezierCurve BezierCurve object to be assigned
         BezierCurve& operator = (const BezierCurve& bezierCurve);
 
+
+        /// Default destructor
         virtual ~BezierCurve();
 
+
+        /// Print BezierCurve control points to the screen
         void PrintControlPoints();
 
+
+        /// @return The BezierCurve control points
         std::vector<BezierLite::BezierControlPoint>& GetControlPoints();
 
 
+        /// Static function to create BezierCurve without creating an instance of 
+        /// BezierCurve class
+        /// @param cptsVector Vector of BezierControlPoint points
+        /// @param nPoints Number of points for the curve to be created
+        /// @return BezierCurve as vector of Point points
         static std::vector<BezierLite::Point> GetBezierCurve(
         	const std::vector<BezierLite::BezierControlPoint>& cpts, int nPoints);
 
+
+        /// Static function to create BezierCurve without creating an instance of 
+        /// BezierCurve class
+        /// @param cptsVector Vector BezierControlPoint points
+        /// @param nPoints Number of points for the curve to be created
+        /// @return BezierCurve as vector of Point points
         static std::vector<BezierLite::Point> GetBezierCurve(
         	const std::vector<BezierLite::Point>& cpts, int nPoints);
 
 
+        /// Append a BezierControlPoint to BezierCurve control points
+        /// @param p BezierControlPoint to append
         void AppendControlPoint(const BezierLite::BezierControlPoint& p);
 
+
+        /// Append a BezierControlPoint to BezierCurve control points
+        /// @param p Point to append
         void AppendControlPoint(const BezierLite::Point& p);
 
+
+        /// Clears all control points
         void ClearControlPoints();
 
+
+        /// Sets number of points in BezierCurve to be created
+        /// @param nCurvePoints Number of points required
         void SetNumberOfCurvePoints(int nCurvePoints);
 
+
+        /// Scale the BezierCurve control points by factor
+        /// @param factor Scale factor
         void ScaleControlPoints(double factor);
 
+
+        /// Function to construct the curve
         void ConstructCurve();
 
 

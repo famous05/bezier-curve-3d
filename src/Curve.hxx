@@ -50,42 +50,52 @@ class Curve
 
 
         /// Copy constructor
+        /// @param curve Curve to copy
         Curve(const Curve& curve);
 
 
         /// Assignment operator
+        /// @param curve Curve to be assigned
         Curve& operator = (const Curve& curve);
 
 
         /// Default destructor
         virtual ~Curve();
 
-
+        /// Prints the curve
         void PrintCurve();
 
-
+        /// @returns Curve as vector of Point points
         const std::vector<BezierLite::Point>& GetCurve() const;
 
-
+        /// @returns Number of points in the curve
         int GetNumberOfCurvePoints();
 
-
+        /// Prints a curve to the screen
+        /// @param vp Curve to print
         template <typename T> static void PrintCurve(const std::vector<T>& vp)
         {
             for(auto p : vp) p.Print();
         }
 
-
+        /// Scles the curve
+        /// @param vp Curve to scale
+        /// @param sclaeFactor Scale factor
         template <typename T> static void ScaleCurve (std::vector<T>& vp, double scaleFactor)
         {
             for (auto &p : vp) p.ScalePoint(scaleFactor);
         }
 
 
+        /// Appends a point to the curve
+        /// @param p Point to append
         void AppendPointToCurve(const BezierLite::Point& p);
 
+        /// Clear the curve
         void ClearCurve();
 
+        /// Scales the curve
+        /// @param factor Scale factor
         void ScaleCurve(double factor);
 
         /// Writes a curve to comma seperated file format

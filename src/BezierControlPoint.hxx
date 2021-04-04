@@ -1,7 +1,7 @@
 /*------------------------------------------------------------------------------
 BezierLite Library
 
-Copyright (c) 2020, Osarobo Famous Okhuahesogie, famous.osarobo@gmail.com
+Copyright (c) 2021, Osarobo Famous Okhuahesogie, famous.osarobo@gmail.com
 
 License
     This file is part of BezierLite library.
@@ -35,22 +35,43 @@ class BezierControlPoint : public BezierLite::Point
 {
     public:
 
+        /// Default constructor        
     	BezierControlPoint();
 
+
+        /// Parameterized Constructor
+        /// @param x, y ,z coordinate valuea and w weight
         BezierControlPoint(double x, double y, double z, double weight = 1);
 
+
+        /// Copy constructor
         BezierControlPoint(const BezierControlPoint& cpoint);
 
+
+        /// Assignment Constructor
         BezierControlPoint& operator = (const BezierControlPoint& point);
 
         virtual ~BezierControlPoint();
 
+
+        /// Prints the BezierControlPoint object to screen
         void Print();
 
+
+        /// Returns the weight of the BezierControlPoint
         double GetWeight() const;
 
+
+        /// Set weight of BezierControlPoint
+        /// @param w weight value between 
         void SetWeight(double w);
 
+
+        /// Sets the coordinates and weight value
+        /// @param x X coordinate value
+        /// @param y Y coordinate value
+        /// @param x Z coordinate value
+        /// @param w Weight of control point
         void SetXYZW(double x, double y, double z, double w);
 
     private:
