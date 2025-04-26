@@ -9,3 +9,5 @@ cmake ..
 cmake --build .
 
 cd ../
+
+read -p "Press ENTER to exit..."
