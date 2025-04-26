@@ -1,4 +1,6 @@
-cmake_minimum_required(VERSION 3.26)
+cmake_minimum_required(VERSION 3.29)
+
+set(CMAKE_CXX_SCAN_FOR_MODULES ON)
 
 project(BezierLite.Point3D LANGUAGES CXX)
 
@@ -32,33 +34,29 @@ if(NOT Eigen3_FOUND)
     FetchContent_MakeAvailable(eigen)
 endif()
 
-# Create the static library
+
+# # Create the static library
 add_library(${LIB_NAME} STATIC)
 
-# Set properties for modules
-set_target_properties(${LIB_NAME} PROPERTIES
-    CXX_STANDARD 20
-    CXX_STANDARD_REQUIRED YES
-    CXX_EXTENSIONS NO
-)
-
-# Add the module interface source
+# # Tell CMake this is a C++20 module
 target_sources(${LIB_NAME}
     PRIVATE
-        Point3D.ixx
-        Utils.ixx
+        FILE_SET cxx_modules TYPE CXX_MODULES FILES
+            Point3D.ixx
+            Utils.ixx
 )
+
 
 # Link Eigen to our library
 target_link_libraries(${LIB_NAME}
     PUBLIC Eigen3::Eigen
 )
 
-# Require C++20 features
-target_compile_features(${LIB_NAME} PRIVATE cxx_std_20)
+# If using Eigen
+target_include_directories(${LIB_NAME} PUBLIC ${eigen3_SOURCE_DIR})
 
-# (Optional) Better organization in IDEs like Visual Studio
-source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES Point3D.ixx)
+# Require C++20 features
+target_compile_features(${LIB_NAME} PUBLIC  cxx_std_20)
 
 set_target_properties(${LIB_NAME} PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
