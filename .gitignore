@@ -1,4 +1,36 @@
-test/bzt
-test/curve.dat
-test/curve_csv.csv
-test/curve_csv.dat
+# Ignore build directory
+/build/
+
+# Ignore CMake generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# Ignore Visual Studio CMake/Build artifacts
+CMakeSettings.json
+CMakePresets.json
+*.vcxproj
+*.vcxproj.user
+*.vcxproj.filters
+*.sln
+
+# Ignore compiled static and dynamic libraries
+*.a
+*.lib
+*.so
+*.dll
+*.dylib
+
+# Ignore executables
+*.exe
+*.out
+
+# Ignore backup or temporary files
+*~
+*.swp
+.DS_Store
+
+# Ignore logs
+*.log
+
