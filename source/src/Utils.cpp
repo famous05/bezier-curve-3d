@@ -1,21 +1,18 @@
 /*------------------------------------------------------------------------------
-Utils.h 
--  Header file for utility functions
+Utils.cpp
 
 This file is part of BezierLite library
 Copyright (c) 2025, Famous Okhuahesogie, famous.osarobo@gmail.com
 ------------------------------------------------------------------------------*/
 
-#pragma once
-
-#include "Point3D.h"
-#include <Eigen/Dense>
+#include "Utils.h"
 
 namespace BezierLite
 {
-    class Utils
+    double Utils::GetDistanceBetweenPoints(const Point3D& p1, const Point3D& p2) noexcept
     {
-    public:
-        static double GetDistanceBetweenPoints(const Point3D& p1, const Point3D& p2) noexcept;
-    };
+        Eigen::Vector3d v1(p1.X, p1.Y, p1.Z);
+        Eigen::Vector3d v2(p2.X, p2.Y, p2.Z);
+        return (v1 - v2).norm();
+    }
 }

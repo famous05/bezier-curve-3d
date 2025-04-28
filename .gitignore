@@ -5,6 +5,9 @@
 /lib/
 /ref/
 
+# ==== External Libraries ====
+/ext/
+
 # ==== CMake generated files ====
 CMakeCache.txt
 CMakeFiles/
