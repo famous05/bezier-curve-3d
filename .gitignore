@@ -1,4 +1,66 @@
-test/bzt
-test/curve.dat
-test/curve_csv.csv
-test/curve_csv.dat
+# ==== Build folders ====
+/build/
+/out/
+/bin/
+/lib/
+/ref/
+
+# ==== External Libraries ====
+/ext/
+
+# ==== CMake generated files ====
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+CTestTestfile.cmake
+CPack*.cmake
+install_manifest.txt
+Testing/
+
+# ==== Visual Studio / VS Code / CLion IDE files ====
+.vscode/
+.idea/
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+
+# ==== System-specific junk ====
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ==== Editor backup files ====
+*~
+*.swp
+*.swo
+*.bak
+
+# ==== Compiled binaries and libraries ====
+*.exe
+*.out
+*.app
+*.a
+*.lib
+*.so
+*.so.*
+*.dll
+*.dylib
+
+# ==== Coverage, Test, and Logs ====
+*.gcno
+*.gcda
+*.gcov
+*.profraw
+*.profdata
+*.log
+
+# ==== Other temporary ====
+*.tmp
+*.temp
+
+# ==== C++ Modules Metadata (if used) ====
+CMakeModules/
+*.ifc
+*.pcm
