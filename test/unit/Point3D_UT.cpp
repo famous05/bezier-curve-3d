@@ -22,12 +22,12 @@ class Point3DTest : public ::testing::Test {
         Point3D p2{4.0, 5.0, 6.0};
     };
 
-// TEST(Point3DTest, DefaultConstructor) {
-//     Point3D p;
-//     EXPECT_DOUBLE_EQ(p.X, 5.0);
-//     EXPECT_DOUBLE_EQ(p.Y, 0.0);
-//     EXPECT_DOUBLE_EQ(p.Z, 0.0);
-// }
+TEST_F(Point3DTest, DefaultConstructor) {
+    Point3D p;
+    EXPECT_DOUBLE_EQ(p.X, 0.0);
+    EXPECT_DOUBLE_EQ(p.Y, 0.0);
+    EXPECT_DOUBLE_EQ(p.Z, 0.0);
+}
 
 TEST_F(Point3DTest, ParameterizedConstructor) {
     Point3D p(1.0, 2.0, 3.0);
