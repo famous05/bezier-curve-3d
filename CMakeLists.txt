@@ -12,4 +12,6 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 # 📦 Add module
 add_subdirectory(source)
+add_subdirectory(app/src)
+add_subdirectory(test/unit)
 

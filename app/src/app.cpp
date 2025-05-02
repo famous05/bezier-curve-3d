@@ -1,7 +1,7 @@
-import BezierLite.Point3D; // Imported module
+#include "Point3D.h"
 
-import <vector>;
-import <iostream>;
+#include <vector>
+#include <iostream>
 
 int main()
 {
