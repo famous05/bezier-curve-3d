@@ -1,4 +1,6 @@
-list(APPEND CMAKE_PREFIX_PATH "$ENV{GOOGLETEST_INSTALL_PATH}")
+
+cmake_minimum_required(VERSION 3.16)
+project(BezierLiteLibrary LANGUAGES CXX)
 
 find_package(GTest REQUIRED)
 message(STATUS "GoogleTest found at: ${GTest_DIR}")
@@ -9,14 +11,15 @@ include_directories(
     "${CMAKE_BINARY_DIR}/source/include"
     )
 
-message(cpp = ${CMAKE_PREFIX_PATH})
-message(genv=  "$ENV{GOOGLETEST_INSTALL_PATH}")
 
 add_executable(Point3DTests Point3D_UT.cpp main.cpp)
 
-target_link_libraries(Point3DTests PRIVATE BezierLite GTest::gtest_main)
+target_link_libraries(Point3DTests
+    PRIVATE
+        BezierLite
+        GTest::GTest
+        GTest::Main
+)
 
 enable_testing()
 add_test(NAME Point3DTests COMMAND Point3DTests)
-
-

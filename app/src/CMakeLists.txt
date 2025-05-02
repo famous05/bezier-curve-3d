@@ -1,3 +1,6 @@
+cmake_minimum_required(VERSION 3.16)
+project(BezierLiteLibrary LANGUAGES CXX)
+
 # Create executable for the app
 set(APP_NAME SampleApp)
 
