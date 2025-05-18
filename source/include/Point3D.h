@@ -15,7 +15,6 @@ namespace BezierLite
     class Point3D
     {
     public:
-        // Member variables (public, UPPERCASE)
         double X{0.0};
         double Y{0.0};
         double Z{0.0};

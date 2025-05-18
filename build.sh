@@ -42,6 +42,19 @@ else
     cd ..
 fi
 
+# # Clone, build and install googletest
+# if [ -d "ext/googletest/.git" ]; then
+#     echo "Googletest already cloned."
+# else
+#     cd $EXT_LIB_DIR
+#     echo "Googletest not found. Cloning..."
+#     git clone https://github.com/google/googletest.git
+#     cd googletest
+#     mkdir build && cd build
+#     cmake .. -DCMAKE_INSTALL_PREFIX=/your/install/path
+#     cmake --build . --target install
+# fi
+
 if [ $CLEAN -eq $TRUE ]; then
     echo "Cleaning out previous build files in  $BUILD_DIR"
     # Check if the script is running in PowerShell
