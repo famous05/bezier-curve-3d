@@ -1,6 +1,6 @@
 ### BezierLite
-BezierLite is a simple Bezier library for constructing weighted control points Bezier curves. 
-It is being rewritten and in a work in progress state
+BezierLite is a simple Bezier library for constructing Bezier curves. It is not yet finalised
+
 
 ### License
 This code is available under the GNU General Public License v3. You should have received a copy of the GNU General Public License
