@@ -41,6 +41,5 @@ int main()
         std::cout << p << '\n';
     }
 
-
     return 0;
 }
