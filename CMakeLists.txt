@@ -1,6 +1,6 @@
 # Root CMakeLists.txt
 
-cmake_minimum_required(VERSION 3.29)
+cmake_minimum_required(VERSION 3.22)
 project(BezierLiteProject LANGUAGES CXX)
 
 # 🧠 Enable module dependency scanning
