@@ -1,17 +1,26 @@
-# Root CMakeLists.txt
+cmake_minimum_required(VERSION 3.16)
+project(bezier-curve-3d LANGUAGES CXX)
+set(LIB_NAME bezier-curve-3d)
 
-cmake_minimum_required(VERSION 3.22)
-project(BezierLiteProject LANGUAGES CXX)
-
-# 🧠 Enable module dependency scanning
-set(CMAKE_CXX_SCAN_FOR_MODULES ON)
-
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# 📦 Add module
-add_subdirectory(source)
-add_subdirectory(app/src)
-# add_subdirectory(test/unit)
+file(GLOB SRC_FILES src/*.cpp)
 
+add_library(${LIB_NAME} STATIC    ${SRC_FILES})
+
+get_filename_component(PARENT_DIR ${CMAKE_CURRENT_SOURCE_DIR} DIRECTORY)
+
+target_include_directories(${LIB_NAME} PUBLIC 
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/ext/eigen
+)
+
+#file(GLOB TEST_SRC_FILES test/unit/*.cpp)
+#
+#add_executable(${LIB_NAME}_test STATIC ${TEST_SRC_FILES})
+
+set_target_properties(${LIB_NAME} PROPERTIES
+    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+)

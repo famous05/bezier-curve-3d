@@ -1,10 +1,23 @@
-/*------------------------------------------------------------------------------
-BezierCurveCreator.h 
--  Class for creating Bezier curves
-
-This file is part of BezierLite library
-Copyright (c) 2025, Famous Okhuahesogie, famous.osarobo@gmail.com
-------------------------------------------------------------------------------*/
+/* Copyright © 2025 Osarobo Famous Okhuahesogie (famous.osarobo@gmail.com)
+*
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 
 #pragma once
 
@@ -15,34 +28,20 @@ Copyright (c) 2025, Famous Okhuahesogie, famous.osarobo@gmail.com
 #include "Point3D.h"
 #include "WPoint3D.h"
 
-namespace BezierLite
+namespace bezier_curve_3d
 {
-    enum class BezierCurveCreatorControlPointsType{
-        Point_3D = 0,
-        WPoint_3D
-    };
-
     template<typename T>
     class BezierCurveCreator
     {
         public:
-            BezierCurveCreator(std::vector<T> Points, int NPoints) : m_CtrlPoints(Points), m_NumPoints(NPoints){
-                if(typeid(m_CtrlPoints.front()) == typeid(Point3D)){
-                    m_CtrlPointsType = BezierCurveCreatorControlPointsType::Point_3D;
-                }else if (typeid(m_CtrlPoints.front()) == typeid(WPoint3D)){
-                    m_CtrlPointsType = BezierCurveCreatorControlPointsType::WPoint_3D;
-                }else{
-                    std::cerr << "Error: Unsupported point type passed to Constructor." << std::endl;
-                }
-            }
-        
+            std::enable_if_t<std::is_same_v<T, Point3D> || std::is_same_v<T, WPoint3D>>
+            BezierCurveCreator(std::vector<T> Points, int NPoints) : m_CtrlPoints(Points), m_NumPoints(NPoints) {}
+
         public:
-            std::vector<Point3D> GetBezierCurvePoints(){
-                return CalculateBezierCurve(m_CtrlPointsType);
-            }
+            std::vector<Point3D> GetBezierCurvePoints(){ return CalculateBezierCurve();}
 
         private:
-        std::vector<Point3D> CalculateBezierCurve(BezierCurveCreatorControlPointsType Type){
+        std::vector<Point3D> CalculateBezierCurve(){
             std::vector<Point3D> curvePoints;
 
             double t = 0;
@@ -57,8 +56,8 @@ namespace BezierLite
                 // Calculate t parameter: (0 <= t <= 1)
                 t = (double)j/double(m_NumPoints - 1);
                 i = 0;
-        
-                if(Type == BezierCurveCreatorControlPointsType::Point_3D) {
+
+                if(typeid(m_CtrlPoints.front()) == typeid(Point3D)){
                     for (const auto& p : m_CtrlPoints){
                         point = p * Utils::GetBernsteinPolynomial(i,n,t);
                         sPoint = sPoint + point;
@@ -78,7 +77,7 @@ namespace BezierLite
                     denSum = 0;
                 }
                 sPoint = Point3D {0, 0, 0};
-                
+
             }
             return curvePoints;
         }
@@ -86,6 +85,5 @@ namespace BezierLite
         private:
             std::vector<T> m_CtrlPoints;
             int m_NumPoints;
-            BezierCurveCreatorControlPointsType m_CtrlPointsType;
     };
-} 
+}
