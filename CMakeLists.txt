@@ -1,26 +1,26 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.15)
 project(bezier-curve-3d LANGUAGES CXX)
 set(LIB_NAME bezier-curve-3d)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
 
-file(GLOB SRC_FILES src/*.cpp)
+message(cbd=${CMAKE_BINARY_DIR})
 
-add_library(${LIB_NAME} STATIC    ${SRC_FILES})
+# Conan Integration
+include(${CMAKE_BINARY_DIR}/generators/conan_toolchain.cmake)
+include(${CMAKE_BINARY_DIR}/generators/conandeps_legacy.cmake)
 
-get_filename_component(PARENT_DIR ${CMAKE_CURRENT_SOURCE_DIR} DIRECTORY)
+# Include folders
+include_directories(${CMAKE_SOURCE_DIR}/include)
 
-target_include_directories(${LIB_NAME} PUBLIC 
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/ext/eigen
-)
+# Main Library
+file(GLOB LIB_SOURCES CONFIGURE_DEPENDS src/*.cpp)
+add_library(${LIB_NAME} ${LIB_SOURCES})
+target_link_libraries(${LIB_NAME} PUBLIC Eigen3::Eigen)
 
-#file(GLOB TEST_SRC_FILES test/unit/*.cpp)
-#
-#add_executable(${LIB_NAME}_test STATIC ${TEST_SRC_FILES})
-
-set_target_properties(${LIB_NAME} PROPERTIES
-    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
-)
+# Unit Tests
+#enable_testing()
+file(GLOB TEST_SOURCES CONFIGURE_DEPENDS test/unit/*.cpp)
+add_executable(${LIB_NAME}_Test ${TEST_SOURCES})
+target_link_libraries(${LIB_NAME}_Test PRIVATE ${LIB_NAME} GTest::gtest_main)
+add_test(NAME bezier-curve-3d-test COMMAND ${LIB_NAME}_Test)
