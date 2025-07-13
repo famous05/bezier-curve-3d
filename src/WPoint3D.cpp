@@ -23,35 +23,18 @@
 
 namespace bezier_curve_3d
 {
+WPoint3D::WPoint3D() : Point3D(0, 0, 0), W(1.0){}
 
-WPoint3D::WPoint3D() : Point3D(0, 0, 0)
-{
-    W = 1;
-}
+WPoint3D::WPoint3D (double x, double y, double z, double w) : Point3D(x, y, z), W(w){}
 
-WPoint3D::WPoint3D (double X, double Y, double Z, double W) : Point3D(X, Y, Z)
-{
-    W = W;
-}
-
-WPoint3D::WPoint3D(const WPoint3D& P) : Point3D(P.X, P.Y, P.Z)
-{
-	W = P.W;
-}
-
+WPoint3D::WPoint3D(const WPoint3D& P) : Point3D(P.X, P.Y, P.Z), W(P.W) {}
 
 WPoint3D& WPoint3D::operator = (const WPoint3D& P)
 {
 	if (&P != this){
-		X = P.X;
-		Y = P.Y;
-		Z = P.Z;
+		Point3D::operator=(P);
 		W = P.W;
 	}
-
 	return *this;
 }
-
-WPoint3D::~WPoint3D(){}
-
 } 

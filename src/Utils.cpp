@@ -19,6 +19,8 @@
  * SOFTWARE.
  */
 
+#include <cassert>
+
 #include "bezier-curve-3d/Utils.h"
 
 namespace bezier_curve_3d
@@ -32,19 +34,30 @@ namespace bezier_curve_3d
 
     int Utils::GetFactorial(int n)
     {
+		if (n < 0) {
+    		throw std::out_of_range(std::string(__func__) + " : " + std::to_string(__LINE__) + " 'n' must be greater than or equal to 0.");
+		}
         if (n == 0 || n == 1) return 1;
-
         return n * Utils::GetFactorial(n - 1);
     }
 
     double Utils::GetBinomialCoefficient(int n, int i)
     {
+		if (n < 0 || i < 0) {
+    		throw std::out_of_range(std::string(__func__) + " : " + std::to_string(__LINE__) + " 'n' and 'i' must be greater than or equal to 0.");
+		}
+		if (n < i ) {
+    		throw std::logic_error(std::string(__func__) + " : " + std::to_string(__LINE__) + " 'n' must be >  i");
+		}
         return Utils::GetFactorial(n)/((Utils::GetFactorial(i)) *
                                                     (Utils::GetFactorial(n - i)));
     }
 
     double Utils::GetBernsteinPolynomial(int i, int n, double t)
     {
+		if(!(t >= 0 && t<=1)){
+			throw std::out_of_range(std::string(__func__) + " : " + std::to_string(__LINE__) + " 't' must be 0 <= t <= 1");
+		}
         return Utils::GetBinomialCoefficient(n, i) * std::pow(t, i) * std::pow(1 - t, n - i);
     }
 }
