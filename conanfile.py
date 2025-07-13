@@ -3,7 +3,7 @@ from conan.tools.cmake import CMake, cmake_layout
 
 class BezierCurve3D(ConanFile):
     name = "bezier-curve-3d"
-    version = "1.0"
+    version = "1.0.0"
     license = "MIT"
     author = "Famous Okhuahesogie"
     url = "https://github.com/famous05/bezier-curve-3d"
@@ -26,4 +26,4 @@ class BezierCurve3D(ConanFile):
 
     def test(self):
         if not self.conf.get("tools.build:skip_test", default=False):
-            self.run(os.path.join(self.cpp.build.bindir, "test_point3d"), env="conanrun")
+            self.run(os.path.join(self.cpp.build.bindir, "bezier-curve-3d_Test"), env="conanrun")

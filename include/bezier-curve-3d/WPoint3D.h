@@ -41,6 +41,6 @@ namespace bezier_curve_3d
             /// Assignment Constructor
             WPoint3D& operator = (const WPoint3D& point);
 
-            virtual ~WPoint3D();
+            virtual ~WPoint3D() {};
     };
 } 
