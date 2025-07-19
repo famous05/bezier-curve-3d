@@ -6,6 +6,9 @@ set(CMAKE_CXX_STANDARD 17)
 
 message(cbd=${CMAKE_BINARY_DIR})
 
+find_package(Eigen3)
+find_package(GTest)
+
 # Conan Integration
 include(${CMAKE_BINARY_DIR}/generators/conan_toolchain.cmake)
 include(${CMAKE_BINARY_DIR}/generators/conandeps_legacy.cmake)
