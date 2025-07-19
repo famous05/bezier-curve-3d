@@ -21,8 +21,8 @@
 
 
 #include "gtest/gtest.h"
-#include "../../include/bezier-curve-3d/Utils.h"
-#include "../../include/bezier-curve-3d/Point3D.h"
+#include "bezier-curve-3d/Utils.h"
+#include "bezier-curve-3d/Point3D.h"
 
 // using namespace bezier_curve_3d;
 using bezier_curve_3d::Utils;
