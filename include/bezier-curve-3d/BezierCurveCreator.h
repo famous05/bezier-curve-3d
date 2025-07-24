@@ -29,11 +29,10 @@
 
 namespace bezier_curve_3d
 {
-    template<typename T>
+    template<typename T, typename = std::enable_if_t<std::is_same_v<T, Point3D> || std::is_same_v<T, WPoint3D>>>
     class BezierCurveCreator
     {
         public:
-            std::enable_if_t<std::is_same_v<T, Point3D> || std::is_same_v<T, WPoint3D>>
             BezierCurveCreator(std::vector<T> Points, int NPoints) : m_CtrlPoints(Points), m_NumPoints(NPoints) {}
 
         public:
@@ -56,15 +55,17 @@ namespace bezier_curve_3d
                 t = (double)j/double(m_NumPoints - 1);
                 i = 0;
 
-                if(typeid(m_CtrlPoints.front()) == typeid(Point3D)){
+                //if(typeid(m_CtrlPoints.front()) == typeid(Point3D)){
+                if (std::is_same_v<decltype(m_CtrlPoints.front()), Point3D>){
                     for (const auto& p : m_CtrlPoints){
                         point = p * Utils::GetBernsteinPolynomial(i,n,t);
                         sPoint = sPoint + point;
                         i += 1;
                     }
                     curvePoints.push_back(sPoint);
-                }else{
+                }else if (std::is_same_v<decltype(m_CtrlPoints.front()), WPoint3D>){
                     for (const auto& p : m_CtrlPoints){
+                        //auto p_ = static_cast<WPoint3D>(p);
                         weightTPoly = p.W * Utils::GetBernsteinPolynomial(i,n,t);
                         point = p * weightTPoly;
                         sPoint = sPoint + point;
