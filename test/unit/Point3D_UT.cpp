@@ -22,7 +22,7 @@
 
 #include <gtest/gtest.h>
 #include <sstream>
-#include "../../include/bezier-curve-3d/Point3D.h"
+#include "bezier-curve-3d/Point3D.h"
 
 using bezier_curve_3d::Point3D;
 

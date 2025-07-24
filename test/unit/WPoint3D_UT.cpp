@@ -20,8 +20,7 @@
  */
 
 #include "gtest/gtest.h"
-#include "../../include/bezier-curve-3d/WPoint3D.h"
-
+#include "bezier-curve-3d/WPoint3D.h"
 
 using bezier_curve_3d::WPoint3D;
 

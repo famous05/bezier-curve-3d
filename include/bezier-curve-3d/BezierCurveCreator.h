@@ -21,69 +21,20 @@
 
 #pragma once
 
-#include <iostream>
-#include <typeinfo>
 #include <vector>
+#include <memory>
 
 #include "Point3D.h"
 #include "WPoint3D.h"
 
 namespace bezier_curve_3d
 {
-    template<typename T>
     class BezierCurveCreator
     {
         public:
-            std::enable_if_t<std::is_same_v<T, Point3D> || std::is_same_v<T, WPoint3D>>
-            BezierCurveCreator(std::vector<T> Points, int NPoints) : m_CtrlPoints(Points), m_NumPoints(NPoints) {}
+            BezierCurveCreator() = delete;
 
-        public:
-            std::vector<Point3D> GetBezierCurvePoints(){ return CalculateBezierCurve();}
-
-        private:
-        std::vector<Point3D> CalculateBezierCurve(){
-            std::vector<Point3D> curvePoints;
-
-            double t = 0;
-            int n = m_CtrlPoints.size() - 1;  // curve degree
-            int i = 0;
-            double denSum = 0;
-            double weightTPoly = 0;
-            Point3D point {0, 0, 0};
-            Point3D sPoint {0, 0, 0};
-
-            for (int j = 0; j < m_NumPoints; j++){
-                // Calculate t parameter: (0 <= t <= 1)
-                t = (double)j/double(m_NumPoints - 1);
-                i = 0;
-
-                if(typeid(m_CtrlPoints.front()) == typeid(Point3D)){
-                    for (const auto& p : m_CtrlPoints){
-                        point = p * Utils::GetBernsteinPolynomial(i,n,t);
-                        sPoint = sPoint + point;
-                        i += 1;
-                    }
-                    curvePoints.push_back(sPoint);
-                }else{
-                    for (const auto& p : m_CtrlPoints){
-                        weightTPoly = p.W * Utils::GetBernsteinPolynomial(i,n,t);
-                        point = p * weightTPoly;
-                        sPoint = sPoint + point;
-                        denSum = denSum + weightTPoly;
-                        i += 1;
-                    }
-                    sPoint = sPoint * (1.0 / denSum);
-                    curvePoints.push_back(sPoint);
-                    denSum = 0;
-                }
-                sPoint = Point3D {0, 0, 0};
-
-            }
-            return curvePoints;
-        }
-
-        private:
-            std::vector<T> m_CtrlPoints;
-            int m_NumPoints;
+            static std::shared_ptr<std::vector<Point3D>> GetBezierCurve(const std::vector<Point3D>& ctrlPoints, int nPoints);
+            static std::shared_ptr<std::vector<Point3D>> GetBezierCurve(const std::vector<WPoint3D>& ctrlPoints, int nPoints);
     };
 }
