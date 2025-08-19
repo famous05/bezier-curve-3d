@@ -58,7 +58,6 @@ namespace bezier_curve_3d
              throw std::invalid_argument(std::string(__FILE__) + ":" + std::to_string(__LINE__) + " 'ctrlPoints' must have at least 2 points for a Bezier curve.");
         }
 
-
         auto curve = std::make_shared<std::vector<Point3D>>();
         curve->reserve(nPoints);
 
@@ -88,11 +87,7 @@ namespace bezier_curve_3d
                 sPoint.Y /= denSum;
                 sPoint.Z /= denSum;
             } else {
-                // Handle cases where denSum is zero (e.g., all weights are zero, or t=0/1 cases where some terms are zero)
-                // For valid Bezier curves with non-zero weights, denSum should generally not be zero for 0 <= t <= 1
-                // This might indicate an issue with input weights or a specific edge case for t.
-                // For simplicity in this test setup, we'll assume valid inputs avoid this.
-                // A more robust implementation might return an error or handle this differently.
+
             }
             curve->push_back(sPoint);
         }
