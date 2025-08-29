@@ -19,8 +19,9 @@
  * SOFTWARE.
  */
 
-#include "bezier-curve-3d/BezierCurveCreator.h"
+
 #include "bezier-curve-3d/Utils.h"
+#include "bezier-curve-3d/BezierCurveCreator.h"
 
 namespace bezier_curve_3d
 {
@@ -86,8 +87,6 @@ namespace bezier_curve_3d
                 sPoint.X /= denSum;
                 sPoint.Y /= denSum;
                 sPoint.Z /= denSum;
-            } else {
-
             }
             curve->push_back(sPoint);
         }
