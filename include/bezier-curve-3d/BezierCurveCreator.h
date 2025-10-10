@@ -1,4 +1,4 @@
-/* Copyright © 2025 Osarobo Famous Okhuahesogie (famous.osarobo@gmail.com)
+/* Copyright © 2018 - 2025 Osarobo Famous Okhuahesogie (famous.osarobo@gmail.com)
 *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,6 +33,10 @@ namespace bezier_curve_3d
     {
         public:
             BezierCurveCreator() = delete;
+            BezierCurveCreator(const BezierCurveCreator&) = delete;
+            BezierCurveCreator(BezierCurveCreator&&) noexcept = delete;
+            BezierCurveCreator& operator=(const BezierCurveCreator&) = delete;
+            BezierCurveCreator& operator=(BezierCurveCreator&&) noexcept = delete;
 
             static std::shared_ptr<std::vector<Point3D>> GetBezierCurve(const std::vector<Point3D>& ctrlPoints, int nPoints);
             static std::shared_ptr<std::vector<Point3D>> GetBezierCurve(const std::vector<WPoint3D>& ctrlPoints, int nPoints);
