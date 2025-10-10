@@ -4,6 +4,6 @@
         "conan": {}
     },
     "include": [
-        "build/Release/generators/CMakePresets.json"
+        "C:\\Users\\famou\\Documents\\Source\\GitHub\\bezier-curve-3d\\build\\generators\\CMakePresets.json"
     ]
 }

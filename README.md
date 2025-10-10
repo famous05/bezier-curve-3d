@@ -1,7 +1,7 @@
 ### bezier-curve-3d
 bezier-curve-3d is a simple Bezier library for constructing Bezier curves. Tested only on Linux so far.
 
-This library assumes you have conan installed and setup locally.
+This library assumes you have conan installed and setup locally with a default profile
 
 ### Use
 
