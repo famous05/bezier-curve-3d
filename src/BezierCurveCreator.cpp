@@ -35,32 +35,46 @@ namespace bezier_curve_3d
     }
     std::shared_ptr<std::vector<Point3D>> BezierCurveCreator::GetBezierCurve(const std::vector<WPoint3D>& ctrlPoints, int nPoints)
     {
-        double t = 0;
-        int n = ctrlPoints.size() - 1;  // curve degree
-        int i = 0;
-        double denSum = 0;
-        double weightTPoly = 0;
-        Point3D point {0, 0, 0};
-        Point3D sPoint {0, 0, 0};
-
         auto curve = std::make_shared<std::vector<Point3D>>();
+        if (ctrlPoints.empty() || nPoints <= 0) return curve;
 
-        for (int j = 0; j < nPoints; j++){
-            // Calculate t parameter: (0 <= t <= 1)
-            t = static_cast<double>(j)/static_cast<double>(nPoints - 1);
-            i = 0;
-            for (auto& p : ctrlPoints){
-                weightTPoly = p.W * Utils::GetBernsteinPolynomial(i,n,t);
-                point = p * weightTPoly;
-                sPoint = sPoint + point;
-                denSum = denSum + weightTPoly;
-                i += 1;
+        int n = static_cast<int>(ctrlPoints.size()) - 1;  // curve degree
+        curve->reserve(nPoints);
+
+        double denom = (nPoints > 1) ? static_cast<double>(nPoints - 1) : 1.0;
+
+        for (int j = 0; j < nPoints; ++j) {
+            double t = static_cast<double>(j) / denom; // 0 <= t <= 1
+
+            // Work on a local copy of control points in homogeneous coordinates
+            std::vector<WPoint3D> pts = ctrlPoints;
+
+            // de Casteljau iterative evaluation in homogeneous space
+            for (int r = 1; r <= n; ++r) {
+                for (int i = 0; i <= n - r; ++i) {
+                    double invt = 1.0 - t;
+                    pts[i].X = invt * pts[i].X + t * pts[i + 1].X;
+                    pts[i].Y = invt * pts[i].Y + t * pts[i + 1].Y;
+                    pts[i].Z = invt * pts[i].Z + t * pts[i + 1].Z;
+                    pts[i].W = invt * pts[i].W + t * pts[i + 1].W;
+                }
             }
-            sPoint = sPoint * (1.0 / denSum);
-            curve->push_back(sPoint);
-            denSum = 0;
-            sPoint = Point3D {0, 0, 0};
+
+            // Convert from homogeneous coordinates to Cartesian (handle W == 0)
+            Point3D out{0.0, 0.0, 0.0};
+            if (pts[0].W != 0.0) {
+                out.X = pts[0].X / pts[0].W;
+                out.Y = pts[0].Y / pts[0].W;
+                out.Z = pts[0].Z / pts[0].W;
+            } else {
+                out.X = pts[0].X;
+                out.Y = pts[0].Y;
+                out.Z = pts[0].Z;
+            }
+
+            curve->push_back(out);
         }
+
         return curve;
     }
 }
